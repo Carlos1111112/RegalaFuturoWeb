@@ -42,7 +42,7 @@ Se ha desarrollado un sitio web completo, moderno y mobile-first para **Regala F
 - Icon Cards para características
 - CTA Sections con gradientes
 
-### Animaciones
+### Animacioness
 - Fade-in al cargar secciones
 - Slide-up para elementos importantes
 - Hover effects sutiles en cards
