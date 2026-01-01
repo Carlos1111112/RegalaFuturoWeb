@@ -9,11 +9,11 @@ interface BaseFieldProps {
   className?: string
 }
 
-interface InputFieldProps extends BaseFieldProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'className'> {
+interface InputFieldProps extends BaseFieldProps, Omit<InputHTMLAttributes<HTMLInputElement>, 'className' | 'id'> {
   type?: 'text' | 'email' | 'tel' | 'number' | 'password'
 }
 
-interface TextareaFieldProps extends BaseFieldProps, Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'> {
+interface TextareaFieldProps extends BaseFieldProps, Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className' | 'id'> {
   rows?: number
 }
 
