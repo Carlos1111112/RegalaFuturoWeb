@@ -56,7 +56,7 @@ export default function RootLayout({
     <html lang="es" className={`${inter.variable} ${poppins.variable}`}>
       <body className="font-sans">
         <Navbar />
-        <main className="min-h-screen">
+        <main>
           {children}
         </main>
         <Footer />
