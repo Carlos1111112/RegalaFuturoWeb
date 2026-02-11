@@ -1,13 +1,39 @@
 'use client'
 
-import { useState } from 'react'
-import Script from 'next/script'
+import { useState, useEffect } from 'react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { InputField, TextareaField, CheckboxField } from '@/components/ui/FormField'
 import Stepper from '@/components/ui/Stepper'
 
 export default function DonatePage() {
+  // Cargar script de MercadoPago al montar el componente
+  useEffect(() => {
+    // Verificar si el script ya existe
+    const existingScript = document.querySelector('script[data-preference-id]')
+    if (existingScript) {
+      return
+    }
+
+    // Crear y agregar el script de MercadoPago
+    const script = document.createElement('script')
+    script.src = 'https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js'
+    script.setAttribute('data-preference-id', '1316613327-26cb5034-015d-4747-a8be-20f08d956c29')
+    script.setAttribute('data-source', 'button')
+    
+    const container = document.getElementById('mercadopago-quick-donate')
+    if (container) {
+      container.appendChild(script)
+      console.log('MercadoPago button script loaded')
+    }
+
+    // Cleanup
+    return () => {
+      if (container && script.parentNode === container) {
+        container.removeChild(script)
+      }
+    }
+  }, [])
   const [donationType, setDonationType] = useState<'money' | 'inkind'>('money')
   const [frequency, setFrequency] = useState<'once' | 'monthly'>('once')
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
@@ -173,8 +199,8 @@ export default function DonatePage() {
 
             {/* 
               BOTÓN DE MERCADO PAGO
-              Script oficial que carga el botón de checkout
-              Se carga con estrategia 'lazyOnload' para no bloquear la página
+              El script se carga dinámicamente con useEffect
+              y renderiza el botón automáticamente en este contenedor
             */}
             <div className="flex flex-col items-center">
               <div 
@@ -182,15 +208,7 @@ export default function DonatePage() {
                 className="mb-4 flex justify-center w-full"
                 style={{ minHeight: '48px' }}
               >
-                <Script 
-                  src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js"
-                  data-preference-id="1316613327-26cb5034-015d-4747-a8be-20f08d956c29"
-                  data-source="button"
-                  strategy="lazyOnload"
-                  onLoad={() => {
-                    console.log('MercadoPago button loaded successfully')
-                  }}
-                />
+                {/* El botón de MercadoPago se renderiza aquí automáticamente */}
               </div>
               
               {/* Mensaje de seguridad */}
