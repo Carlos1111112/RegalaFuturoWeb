@@ -31,7 +31,7 @@ import { useState } from 'react'
 
 ```tsx
 <a 
-  href="https://mpago.la/2wFR6Rh"
+  href="https://mpago.la/1rhEwPh"
   target="_blank"
   rel="noopener noreferrer"
   className="mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-4 px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-lg inline-flex items-center gap-2"
@@ -45,7 +45,7 @@ import { useState } from 'react'
 
 #### Parámetros Importantes:
 
-- **`href="https://mpago.la/2wFR6Rh"`**: Link directo al checkout de S/ 5
+- **`href="https://mpago.la/1rhEwPh"`**: Link directo al checkout de S/ 5
 - **`target="_blank"`**: Abre en nueva pestaña
 - **`rel="noopener noreferrer"`**: Seguridad para links externos
 - **`bg-[#009ee3]`**: Color oficial de MercadoPago
@@ -159,7 +159,7 @@ Se incluye un box explicativo que muestra el impacto directo de la donación:
 2. Bloqueador de popups activo
 
 **Solución:**
-- Verificar que el link esté activo en MercadoPago: https://mpago.la/2wFR6Rh
+- Verificar que el link esté activo en MercadoPago: https://mpago.la/1rhEwPh
 - Permitir popups para el sitio
 - El link abre en nueva pestaña automáticamente
 
@@ -220,7 +220,7 @@ pnpm dev
 
 Simplemente edita el contenido del `<a>`:
 ```tsx
-<a href="https://mpago.la/2wFR6Rh" ...>
+<a href="https://mpago.la/1rhEwPh" ...>
   Donar  {/* Cambia aquí */}
 </a>
 ```
@@ -263,7 +263,7 @@ Simplemente edita el contenido del `<a>`:
       {/* Botón de MercadoPago - Link Directo */}
       <div className="flex flex-col items-center">
         <a 
-          href="https://mpago.la/2wFR6Rh"
+          href="https://mpago.la/1rhEwPh"
           target="_blank"
           rel="noopener noreferrer"
           className="mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-4 px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-lg inline-flex items-center gap-2"
@@ -306,7 +306,7 @@ Simplemente edita el contenido del `<a>`:
 
 - ✅ Link directo de MercadoPago configurado
 - ✅ Botón dice "Donar" (como solicitado)
-- ✅ Link de pago: https://mpago.la/2wFR6Rh (S/ 5)
+- ✅ Link de pago: https://mpago.la/1rhEwPh (S/ 5)
 - ✅ Diseño responsive (mobile + desktop)
 - ✅ Mensaje de impacto visible
 - ✅ Elementos de confianza (seguridad)

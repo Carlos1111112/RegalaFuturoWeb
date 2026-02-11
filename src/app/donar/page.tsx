@@ -185,7 +185,7 @@ export default function DonatePage() {
             */}
             <div className="flex flex-col items-center">
               <a 
-                href="https://mpago.la/2wFR6Rh"
+                href="https://mpago.la/1rhEwPh"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mb-3 sm:mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-3 px-8 sm:py-4 sm:px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-base sm:text-lg inline-flex items-center gap-2 w-full sm:w-auto justify-center max-w-xs"
