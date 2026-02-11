@@ -16,35 +16,39 @@ Permitir donaciones rápidas y simples de **S/ 5** mediante MercadoPago, sin nec
 
 ## 🔧 Implementación Técnica
 
-### Opción Elegida: **Opción B - Script Embebido**
+### Opción Elegida: **Opción A - Link Directo** (ACTUALIZADO)
 
-Se utilizó el script oficial de MercadoPago integrado con Next.js para mejor rendimiento y compatibilidad.
+Se utiliza un link directo al checkout de MercadoPago. Esta es la solución más simple, confiable y mantenible.
 
 ### Componentes Utilizados
 
 ```tsx
-import Script from 'next/script'  // Next.js optimizado para scripts externos
+// Solo componentes estándar de React
+import { useState } from 'react'
 ```
 
-### Script de MercadoPago
+### Link de MercadoPago
 
-```javascript
-<Script 
-  src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js"
-  data-preference-id="1316613327-26cb5034-015d-4747-a8be-20f08d956c29"
-  data-source="button"
-  strategy="lazyOnload"
-  onLoad={() => {
-    console.log('MercadoPago button loaded successfully')
-  }}
-/>
+```tsx
+<a 
+  href="https://mpago.la/2wFR6Rh"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-4 px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-lg inline-flex items-center gap-2"
+>
+  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+  </svg>
+  Donar
+</a>
 ```
 
 #### Parámetros Importantes:
 
-- **`data-preference-id`**: ID único de la preferencia de pago de S/ 5
-- **`data-source="button"`**: Indica que se renderizará como botón
-- **`strategy="lazyOnload"`**: Carga el script después de que la página esté interactiva (no bloquea el renderizado inicial)
+- **`href="https://mpago.la/2wFR6Rh"`**: Link directo al checkout de S/ 5
+- **`target="_blank"`**: Abre en nueva pestaña
+- **`rel="noopener noreferrer"`**: Seguridad para links externos
+- **`bg-[#009ee3]`**: Color oficial de MercadoPago
 
 ---
 
@@ -131,42 +135,42 @@ Se incluye un box explicativo que muestra el impacto directo de la donación:
 1. **Llega a /donar**
 2. **Ve inmediatamente la sección de S/ 5** (primera sección después del hero)
 3. **Lee el impacto de su donación**
-4. **Hace clic en el botón de MercadoPago**
-5. **Es redirigido al checkout de MercadoPago**
+4. **Hace clic en el botón "Donar"**
+5. **Se abre nueva pestaña con checkout de MercadoPago**
 6. **Completa el pago de forma segura**
-7. **Recibe confirmación**
+7. **Recibe confirmación de MercadoPago**
 
 ### Flujo Técnico:
 
 1. Página carga (`/donar`)
-2. Script de MercadoPago se carga con `lazyOnload`
-3. Script renderiza el botón en el `div#mercadopago-quick-donate`
-4. Usuario hace clic → redirect a checkout de MercadoPago
-5. MercadoPago procesa el pago
-6. Usuario regresa a la página (según configuración de MercadoPago)
+2. Botón renderiza inmediatamente (sin scripts externos)
+3. Usuario hace clic → `window.open` a link de MercadoPago
+4. MercadoPago procesa el pago en su plataforma
+5. Usuario puede cerrar la pestaña o regresar
 
 ---
 
 ## 🛠️ Solución de Problemas
 
-### Botón No Aparece
+### Link No Funciona
 
 **Posibles causas:**
-1. Script bloqueado por adblocker
-2. Preference ID inválido o expirado
-3. Error de red
+1. Link de pago expirado o desactivado en MercadoPago
+2. Bloqueador de popups activo
 
 **Solución:**
-- Verificar en consola: `console.log('MercadoPago button loaded successfully')`
-- Revisar Network tab para errores de carga del script
-- Verificar que el preference ID sea válido en MercadoPago
+- Verificar que el link esté activo en MercadoPago: https://mpago.la/2wFR6Rh
+- Permitir popups para el sitio
+- El link abre en nueva pestaña automáticamente
 
-### Issues de SSR (Server-Side Rendering)
+### Ventajas de Esta Implementación
 
-**Ya resuelto:**
-- Uso de `'use client'` en el componente
-- Uso de `next/script` con `strategy="lazyOnload"`
-- No hay código de MercadoPago en el servidor
+✅ **Sin dependencias de scripts externos**
+✅ **Funciona siempre (no depende de carga de scripts)**
+✅ **Sin problemas de SSR**
+✅ **Más rápido (cero tiempo de carga)**
+✅ **Más fácil de mantener**
+✅ **Compatible con todos los navegadores**
 
 ---
 
@@ -191,14 +195,14 @@ Se incluye un box explicativo que muestra el impacto directo de la donación:
 
 ## 🔄 Mantenimiento
 
-### Actualizar Preference ID:
+### Actualizar Link de Pago:
 
-Si necesitas cambiar el monto o crear nueva preferencia:
+Si necesitas cambiar el monto o crear nuevo link:
 
-1. Genera nuevo preference ID en MercadoPago
+1. Genera nuevo link de pago en MercadoPago
 2. Actualiza en el código:
    ```tsx
-   data-preference-id="NUEVO-ID-AQUI"
+   href="NUEVO-LINK-AQUI"
    ```
 3. Commit y deploy
 
@@ -208,7 +212,17 @@ Si necesitas cambiar el monto o crear nueva preferencia:
 # En desarrollo
 pnpm dev
 # Abrir http://localhost:3000/donar
-# Verificar que el botón carga correctamente
+# Verificar que el botón aparece y funciona
+# Click → debe abrir MercadoPago en nueva pestaña
+```
+
+### Cambiar Texto del Botón:
+
+Simplemente edita el contenido del `<a>`:
+```tsx
+<a href="https://mpago.la/2wFR6Rh" ...>
+  Donar  {/* Cambia aquí */}
+</a>
 ```
 
 ---
@@ -246,23 +260,19 @@ pnpm dev
         </div>
       </div>
 
-      {/* Botón de MercadoPago */}
+      {/* Botón de MercadoPago - Link Directo */}
       <div className="flex flex-col items-center">
-        <div 
-          id="mercadopago-quick-donate" 
-          className="mb-4 flex justify-center w-full"
-          style={{ minHeight: '48px' }}
+        <a 
+          href="https://mpago.la/2wFR6Rh"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-4 px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-lg inline-flex items-center gap-2"
         >
-          <Script 
-            src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js"
-            data-preference-id="1316613327-26cb5034-015d-4747-a8be-20f08d956c29"
-            data-source="button"
-            strategy="lazyOnload"
-            onLoad={() => {
-              console.log('MercadoPago button loaded successfully')
-            }}
-          />
-        </div>
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+          </svg>
+          Donar
+        </a>
         
         {/* Mensaje de Seguridad */}
         <div className="flex items-center justify-center gap-2 text-sm text-text-muted">
@@ -294,17 +304,20 @@ pnpm dev
 
 ## ✅ Checklist de Implementación
 
-- ✅ Script de MercadoPago integrado con Next.js
-- ✅ Preference ID configurado (S/ 5)
+- ✅ Link directo de MercadoPago configurado
+- ✅ Botón dice "Donar" (como solicitado)
+- ✅ Link de pago: https://mpago.la/2wFR6Rh (S/ 5)
 - ✅ Diseño responsive (mobile + desktop)
 - ✅ Mensaje de impacto visible
 - ✅ Elementos de confianza (seguridad)
-- ✅ Sin issues de SSR
+- ✅ Sin issues de SSR o scripts externos
 - ✅ HTML semántico
 - ✅ Accesible (ARIA, keyboard navigation)
 - ✅ Comentarios explicativos en código
 - ✅ No expone claves privadas
-- ✅ Estilo consistente con diseño NGO
+- ✅ Estilo MercadoPago oficial (azul #009ee3)
+- ✅ Abre en nueva pestaña
+- ✅ Carga instantánea (sin esperas)
 
 ---
 
@@ -315,5 +328,5 @@ Para actualizar el preference ID o cambiar configuración de MercadoPago, contac
 ---
 
 **Última actualización:** 2026-02-10
-**Versión:** 1.0
-**Estado:** ✅ Implementado y funcional
+**Versión:** 2.0 (Link directo - Simplificado)
+**Estado:** ✅ Implementado, funcional y optimizado
