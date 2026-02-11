@@ -110,28 +110,28 @@ export default function DonatePage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-500 to-primary-600 text-white py-16 sm:py-20">
+      {/* Hero - Responsive optimizado */}
+      <section className="bg-gradient-to-br from-primary-500 to-primary-600 text-white py-10 sm:py-16 md:py-20 min-h-0">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-display font-bold text-4xl sm:text-5xl mb-6">
+          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 leading-tight">
             Transforma Vidas a Través de la Educación
           </h1>
-          <p className="text-xl leading-relaxed opacity-95 mb-8">
+          <p className="text-base sm:text-lg md:text-xl leading-relaxed opacity-95 mb-6 sm:mb-8">
             Tu donación se convierte en kits educativos que abren puertas, generan oportunidades 
             y construyen futuros. Un cuaderno hoy, un futuro mañana.
           </p>
-          <div className="flex flex-col sm:flex-row gap-8 justify-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <div className="text-4xl font-bold mb-2">S/ 50</div>
-              <div className="text-sm opacity-90">Kit básico completo</div>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6">
+              <div className="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2">S/ 50</div>
+              <div className="text-xs sm:text-sm opacity-90">Kit básico completo</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <div className="text-4xl font-bold mb-2">S/ 100</div>
-              <div className="text-sm opacity-90">Kit + libros escolares</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6">
+              <div className="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2">S/ 100</div>
+              <div className="text-xs sm:text-sm opacity-90">Kit + libros escolares</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <div className="text-4xl font-bold mb-2">S/ 200</div>
-              <div className="text-sm opacity-90">Kit + tecnología educativa</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6">
+              <div className="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2">S/ 200</div>
+              <div className="text-xs sm:text-sm opacity-90">Kit + tecnología educativa</div>
             </div>
           </div>
         </div>
@@ -141,28 +141,36 @@ export default function DonatePage() {
         DONACIÓN RÁPIDA S/ 5 - MERCADO PAGO
         Esta sección permite donaciones inmediatas y simples de S/ 5
         sin necesidad de llenar formularios extensos
+        
+        RESPONSIVE FIX:
+        - Sin height fijo, usa height: auto
+        - Padding vertical reducido en mobile (py-6 → py-12 → py-16)
+        - Card con padding adaptativo para evitar cortes
+        - Título más pequeño en mobile para ahorrar espacio
+        - Botón más compacto en mobile
+        - Todo el contenido visible en viewport ≤375px
       */}
-      <section className="bg-warm-100 py-12 sm:py-16 border-b-4 border-primary-300">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-2xl shadow-soft-xl p-8 sm:p-10 border-2 border-primary-200">
-            {/* Título e ícono */}
-            <div className="flex flex-col items-center text-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl flex items-center justify-center mb-4 shadow-soft">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <section className="bg-warm-100 py-6 sm:py-12 md:py-16 border-b-4 border-primary-300 min-h-0">
+        <div className="max-w-3xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-soft-xl p-5 sm:p-8 md:p-10 border-2 border-primary-200 box-border h-auto">
+            {/* Título e ícono - Compacto en mobile */}
+            <div className="flex flex-col items-center text-center mb-4 sm:mb-6">
+              <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-soft">
+                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                 </svg>
               </div>
               
-              <h2 className="font-display font-bold text-3xl text-text-primary mb-3">
+              <h2 className="font-display font-bold text-2xl sm:text-3xl text-text-primary mb-2 sm:mb-3">
                 Dona S/ 5 Ahora
               </h2>
               
-              {/* Mensaje de impacto */}
-              <div className="bg-primary-50 rounded-xl p-4 mb-6 max-w-lg">
-                <p className="text-text-primary font-semibold mb-2">
+              {/* Mensaje de impacto - Compacto en mobile */}
+              <div className="bg-primary-50 rounded-xl p-3 sm:p-4 mb-4 sm:mb-6 max-w-lg w-full">
+                <p className="text-text-primary font-semibold mb-1.5 sm:mb-2 text-sm sm:text-base">
                   ✨ Tu donación de S/ 5 ayuda a:
                 </p>
-                <ul className="text-sm text-text-secondary space-y-1 text-left">
+                <ul className="text-xs sm:text-sm text-text-secondary space-y-0.5 sm:space-y-1 text-left">
                   <li>• Proveer útiles escolares esenciales a un estudiante</li>
                   <li>• Formar parte de un kit educativo completo</li>
                   <li>• Cambiar el futuro de un niño en comunidad vulnerable</li>
@@ -173,32 +181,33 @@ export default function DonatePage() {
             {/* 
               BOTÓN DE MERCADO PAGO
               Link directo al pago de S/ 5 en MercadoPago
+              Compacto en mobile, más grande en desktop
             */}
             <div className="flex flex-col items-center">
               <a 
                 href="https://mpago.la/2wFR6Rh"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-4 px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-lg inline-flex items-center gap-2"
+                className="mb-3 sm:mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-3 px-8 sm:py-4 sm:px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-base sm:text-lg inline-flex items-center gap-2 w-full sm:w-auto justify-center max-w-xs"
               >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
                 </svg>
                 Donar
               </a>
               
-              {/* Mensaje de seguridad */}
-              <div className="flex items-center justify-center gap-2 text-sm text-text-muted">
-                <svg className="w-4 h-4 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {/* Mensaje de seguridad - Compacto en mobile */}
+              <div className="flex items-center justify-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-text-muted px-2">
+                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
-                <span>Pago seguro procesado por Mercado Pago</span>
+                <span className="text-center">Pago seguro procesado por Mercado Pago</span>
               </div>
             </div>
 
-            {/* Nota adicional */}
-            <div className="mt-6 pt-6 border-t border-warm-200 text-center">
-              <p className="text-sm text-text-secondary">
+            {/* Nota adicional - Espaciado reducido en mobile */}
+            <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-warm-200 text-center">
+              <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
                 ¿Quieres donar otro monto o en especie?{' '}
                 <button 
                   onClick={() => window.scrollTo({ top: document.getElementById('donation-options')?.offsetTop || 0, behavior: 'smooth' })}
