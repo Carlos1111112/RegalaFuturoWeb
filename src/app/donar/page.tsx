@@ -1,39 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { InputField, TextareaField, CheckboxField } from '@/components/ui/FormField'
 import Stepper from '@/components/ui/Stepper'
 
 export default function DonatePage() {
-  // Cargar script de MercadoPago al montar el componente
-  useEffect(() => {
-    // Verificar si el script ya existe
-    const existingScript = document.querySelector('script[data-preference-id]')
-    if (existingScript) {
-      return
-    }
-
-    // Crear y agregar el script de MercadoPago
-    const script = document.createElement('script')
-    script.src = 'https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js'
-    script.setAttribute('data-preference-id', '1316613327-26cb5034-015d-4747-a8be-20f08d956c29')
-    script.setAttribute('data-source', 'button')
-    
-    const container = document.getElementById('mercadopago-quick-donate')
-    if (container) {
-      container.appendChild(script)
-      console.log('MercadoPago button script loaded')
-    }
-
-    // Cleanup
-    return () => {
-      if (container && script.parentNode === container) {
-        container.removeChild(script)
-      }
-    }
-  }, [])
   const [donationType, setDonationType] = useState<'money' | 'inkind'>('money')
   const [frequency, setFrequency] = useState<'once' | 'monthly'>('once')
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
@@ -199,17 +172,20 @@ export default function DonatePage() {
 
             {/* 
               BOTÓN DE MERCADO PAGO
-              El script se carga dinámicamente con useEffect
-              y renderiza el botón automáticamente en este contenedor
+              Link directo al pago de S/ 5 en MercadoPago
             */}
             <div className="flex flex-col items-center">
-              <div 
-                id="mercadopago-quick-donate" 
-                className="mb-4 flex justify-center w-full"
-                style={{ minHeight: '48px' }}
+              <a 
+                href="https://mpago.la/2wFR6Rh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mb-4 bg-[#009ee3] hover:bg-[#0089cc] text-white font-bold py-4 px-12 rounded-lg transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5 text-lg inline-flex items-center gap-2"
               >
-                {/* El botón de MercadoPago se renderiza aquí automáticamente */}
-              </div>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
+                </svg>
+                Donar
+              </a>
               
               {/* Mensaje de seguridad */}
               <div className="flex items-center justify-center gap-2 text-sm text-text-muted">
