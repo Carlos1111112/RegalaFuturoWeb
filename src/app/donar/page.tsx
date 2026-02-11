@@ -220,9 +220,6 @@ export default function DonatePage() {
 
       {/* Donation Type Selection */}
       <section id="donation-options" className="section-container bg-white">
-
-      {/* Donation Type Selection */}
-      <section className="section-container bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-display font-bold text-3xl text-gray-900 mb-8 text-center">
             Elige Cómo Quieres Ayudar
