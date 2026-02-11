@@ -17,19 +17,19 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-white shadow-md sticky top-0 z-50">
+      <nav className="bg-primary-500 shadow-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">RF</span>
+              <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                <span className="text-primary-500 font-bold text-xl">RF</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-bold text-xl text-gray-900">
+                <span className="font-display font-bold text-xl text-white">
                   Regala Futuro
                 </span>
-                <span className="text-xs text-gray-600 hidden sm:block">
+                <span className="text-xs text-white/80 hidden sm:block">
                   Educación para todos
                 </span>
               </div>
@@ -41,7 +41,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-gray-700 hover:text-primary-500 font-medium transition-colors"
+                  className="text-white hover:text-white/80 font-medium transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -52,13 +52,13 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center space-x-4">
               <Link
                 href="/solicitar-apoyo"
-                className="text-secondary-600 hover:text-secondary-700 font-semibold transition-colors"
+                className="text-white hover:text-white/80 font-semibold transition-colors"
               >
                 Solicitar Apoyo
               </Link>
               <Link
                 href="/donar"
-                className="btn-primary"
+                className="bg-white text-primary-500 hover:bg-white/90 font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg"
               >
                 Donar Ahora
               </Link>
@@ -67,7 +67,7 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100 focus:outline-none"
+              className="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white/80 hover:bg-primary-600 focus:outline-none"
               aria-label="Menú principal"
             >
               <svg
@@ -93,13 +93,13 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu */}
-        <div className={`${isOpen ? 'block' : 'hidden'} lg:hidden bg-white border-t`}>
+        <div className={`${isOpen ? 'block' : 'hidden'} lg:hidden bg-primary-500 border-t border-white/20`}>
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-500 hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white/80 hover:bg-primary-600"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -107,7 +107,7 @@ export default function Navbar() {
             ))}
             <Link
               href="/solicitar-apoyo"
-              className="block px-3 py-2 rounded-md text-base font-medium text-secondary-600 hover:bg-gray-50"
+              className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-primary-600"
               onClick={() => setIsOpen(false)}
             >
               Solicitar Apoyo
@@ -115,7 +115,7 @@ export default function Navbar() {
             <div className="px-3 py-2">
               <Link
                 href="/donar"
-                className="block text-center btn-primary w-full"
+                className="block text-center bg-white text-primary-500 hover:bg-white/90 font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg w-full"
                 onClick={() => setIsOpen(false)}
               >
                 Donar Ahora
