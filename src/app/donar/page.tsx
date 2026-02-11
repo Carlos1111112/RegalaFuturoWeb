@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Script from 'next/script'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
 import { InputField, TextareaField, CheckboxField } from '@/components/ui/FormField'
@@ -326,10 +327,31 @@ export default function DonatePage() {
                 />
 
                 <div className="border-t pt-6">
-                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? 'Procesando...' : `Donar S/ ${selectedAmount || customAmount || '0'}`}
+                  {/* MercadoPago Payment Button */}
+                  <div className="mb-4">
+                    <div id="mercadopago-button-container" className="flex justify-center">
+                      <Script 
+                        src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js"
+                        data-preference-id="1316613327-26cb5034-015d-4747-a8be-20f08d956c29"
+                        data-source="button"
+                        strategy="lazyOnload"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="relative my-6">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-warm-300"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-4 bg-warm-50 text-text-muted">o contacta con nosotros</span>
+                    </div>
+                  </div>
+
+                  <Button type="submit" size="lg" variant="outline" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? 'Procesando...' : 'Contactar para otras formas de pago'}
                   </Button>
-                  <p className="text-sm text-gray-600 text-center mt-4">
+                  <p className="text-sm text-text-muted text-center mt-4">
                     🔒 Tu información está segura y protegida
                   </p>
                 </div>
