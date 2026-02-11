@@ -26,19 +26,21 @@ interface SelectFieldProps extends BaseFieldProps {
 export function InputField({ label, id, error, required, className, ...props }: InputFieldProps) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
+      {/* Warm text colors for labels - more inviting than gray */}
+      <label htmlFor={id} className="block text-sm font-semibold text-text-secondary mb-2">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-secondary-600 ml-1">*</span>}
       </label>
       <input
         id={id}
         className={clsx(
-          'w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors',
-          error ? 'border-red-500' : 'border-gray-300'
+          // Rounded corners and warm borders feel friendly, not bureaucratic
+          'w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-500 transition-all duration-200 bg-white text-text-primary',
+          error ? 'border-secondary-500' : 'border-warm-300 hover:border-warm-400'
         )}
         {...props}
       />
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+      {error && <p className="mt-1 text-sm text-secondary-600 font-medium">{error}</p>}
     </div>
   )
 }
@@ -46,20 +48,20 @@ export function InputField({ label, id, error, required, className, ...props }: 
 export function TextareaField({ label, id, error, required, rows = 4, className, ...props }: TextareaFieldProps) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
+      <label htmlFor={id} className="block text-sm font-semibold text-text-secondary mb-2">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-secondary-600 ml-1">*</span>}
       </label>
       <textarea
         id={id}
         rows={rows}
         className={clsx(
-          'w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors',
-          error ? 'border-red-500' : 'border-gray-300'
+          'w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-500 transition-all duration-200 bg-white text-text-primary',
+          error ? 'border-secondary-500' : 'border-warm-300 hover:border-warm-400'
         )}
         {...props}
       />
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+      {error && <p className="mt-1 text-sm text-secondary-600 font-medium">{error}</p>}
     </div>
   )
 }
@@ -67,15 +69,15 @@ export function TextareaField({ label, id, error, required, rows = 4, className,
 export function SelectField({ label, id, error, required, options, className, ...props }: SelectFieldProps) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-2">
+      <label htmlFor={id} className="block text-sm font-semibold text-text-secondary mb-2">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="text-secondary-600 ml-1">*</span>}
       </label>
       <select
         id={id}
         className={clsx(
-          'w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors',
-          error ? 'border-red-500' : 'border-gray-300'
+          'w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-primary-400 focus:border-primary-500 transition-all duration-200 bg-white text-text-primary',
+          error ? 'border-secondary-500' : 'border-warm-300 hover:border-warm-400'
         )}
         {...props}
       >
@@ -86,7 +88,7 @@ export function SelectField({ label, id, error, required, options, className, ..
           </option>
         ))}
       </select>
-      {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
+      {error && <p className="mt-1 text-sm text-secondary-600 font-medium">{error}</p>}
     </div>
   )
 }
@@ -107,9 +109,9 @@ export function CheckboxField({ label, id, checked, onChange, className }: Check
         id={id}
         checked={checked}
         onChange={onChange}
-        className="mt-1 h-4 w-4 text-primary-500 focus:ring-primary-500 border-gray-300 rounded"
+        className="mt-1 h-5 w-5 text-primary-500 focus:ring-primary-400 border-warm-300 rounded-md transition-colors"
       />
-      <label htmlFor={id} className="ml-3 text-sm text-gray-700">
+      <label htmlFor={id} className="ml-3 text-sm text-text-secondary leading-relaxed">
         {label}
       </label>
     </div>

@@ -15,20 +15,21 @@ export default function KPIGrid({ kpis }: KPIGridProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {kpis.map((kpi, index) => (
-        <Card key={index} className="text-center" hover>
+        <Card key={index} className="text-center bg-white" hover>
           {kpi.icon && (
-            <div className="flex justify-center mb-4 text-primary-500">
+            <div className="flex justify-center mb-4 text-primary-600">
               {kpi.icon}
             </div>
           )}
-          <div className="text-4xl font-display font-bold text-gray-900 mb-2">
+          {/* Large, confident numbers in warm primary color */}
+          <div className="text-4xl font-display font-bold text-primary-600 mb-2">
             {kpi.value}
           </div>
-          <div className="text-sm font-medium text-gray-600 mb-1">
+          <div className="text-sm font-semibold text-text-secondary mb-1">
             {kpi.label}
           </div>
           {kpi.trend && (
-            <div className="text-xs text-secondary-600 font-medium">
+            <div className="text-xs text-accent-600 font-medium">
               {kpi.trend}
             </div>
           )}

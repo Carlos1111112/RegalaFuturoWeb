@@ -9,26 +9,79 @@
     @apply scroll-smooth;
   }
   
+  /* 
+   * Body uses warm cream background instead of white - reduces eye strain,
+   * feels more human and inviting (NGO warmth vs corporate sterility)
+   */
   body {
-    @apply bg-white text-gray-900 antialiased;
+    @apply bg-warm-100 text-text-secondary antialiased;
+  }
+  
+  /* Improved heading hierarchy with warm text colors */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-primary;
   }
 }
 
 @layer components {
+  /* 
+   * Primary button: Warm amber that signals hope and action
+   * Lift effect on hover creates engagement without aggression
+   */
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+    @apply bg-primary-500 hover:bg-primary-600 text-white font-semibold py-3 px-6 rounded-xl 
+           transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5;
   }
   
+  /* 
+   * Secondary button: Terracotta warmth for secondary actions
+   * Maintains visual hierarchy while staying inviting
+   */
   .btn-secondary {
-    @apply bg-secondary-500 hover:bg-secondary-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+    @apply bg-secondary-500 hover:bg-secondary-600 text-white font-semibold py-3 px-6 rounded-xl 
+           transition-all duration-200 shadow-soft-md hover:shadow-soft-lg hover:-translate-y-0.5;
   }
   
+  /* 
+   * Outline button: Suggests action without pressure
+   * Border-first design is less aggressive, more exploratory
+   */
   .btn-outline {
-    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200;
+    @apply border-2 border-primary-500 text-primary-700 hover:bg-primary-500 hover:text-white 
+           font-semibold py-3 px-6 rounded-xl transition-all duration-200;
   }
   
+  /* 
+   * Section container with generous breathing space
+   * Extra padding creates calm, prevents overwhelming feeling
+   */
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28;
+  }
+  
+  /* 
+   * Pull quote styling for mission statements
+   * Creates emotional moments without images
+   */
+  .pull-quote {
+    @apply text-2xl sm:text-3xl font-display font-semibold text-text-primary 
+           border-l-4 border-primary-500 pl-6 py-4 italic leading-relaxed;
+  }
+  
+  /* 
+   * Highlight box for key messages
+   * Warm background with accent border draws attention warmly
+   */
+  .highlight-box {
+    @apply bg-primary-50 border-l-4 border-primary-500 p-6 rounded-r-xl;
+  }
+  
+  /* 
+   * Visual section separators for rhythm
+   * Subtle line prevents wall-of-content feeling
+   */
+  .section-divider {
+    @apply w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full mx-auto my-8;
   }
   
   .fade-in {
