@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Script from 'next/script'
 import Card from '@/components/ui/Card'
 import Button from '@/components/ui/Button'
@@ -137,6 +137,89 @@ export default function DonatePage() {
           </div>
         </div>
       </section>
+
+      {/* 
+        DONACIÓN RÁPIDA S/ 5 - MERCADO PAGO
+        Esta sección permite donaciones inmediatas y simples de S/ 5
+        sin necesidad de llenar formularios extensos
+      */}
+      <section className="bg-warm-100 py-12 sm:py-16 border-b-4 border-primary-300">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-soft-xl p-8 sm:p-10 border-2 border-primary-200">
+            {/* Título e ícono */}
+            <div className="flex flex-col items-center text-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-400 to-secondary-500 rounded-2xl flex items-center justify-center mb-4 shadow-soft">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              
+              <h2 className="font-display font-bold text-3xl text-text-primary mb-3">
+                Dona S/ 5 Ahora
+              </h2>
+              
+              {/* Mensaje de impacto */}
+              <div className="bg-primary-50 rounded-xl p-4 mb-6 max-w-lg">
+                <p className="text-text-primary font-semibold mb-2">
+                  ✨ Tu donación de S/ 5 ayuda a:
+                </p>
+                <ul className="text-sm text-text-secondary space-y-1 text-left">
+                  <li>• Proveer útiles escolares esenciales a un estudiante</li>
+                  <li>• Formar parte de un kit educativo completo</li>
+                  <li>• Cambiar el futuro de un niño en comunidad vulnerable</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* 
+              BOTÓN DE MERCADO PAGO
+              Script oficial que carga el botón de checkout
+              Se carga con estrategia 'lazyOnload' para no bloquear la página
+            */}
+            <div className="flex flex-col items-center">
+              <div 
+                id="mercadopago-quick-donate" 
+                className="mb-4 flex justify-center w-full"
+                style={{ minHeight: '48px' }}
+              >
+                <Script 
+                  src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js"
+                  data-preference-id="1316613327-26cb5034-015d-4747-a8be-20f08d956c29"
+                  data-source="button"
+                  strategy="lazyOnload"
+                  onLoad={() => {
+                    console.log('MercadoPago button loaded successfully')
+                  }}
+                />
+              </div>
+              
+              {/* Mensaje de seguridad */}
+              <div className="flex items-center justify-center gap-2 text-sm text-text-muted">
+                <svg className="w-4 h-4 text-accent-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span>Pago seguro procesado por Mercado Pago</span>
+              </div>
+            </div>
+
+            {/* Nota adicional */}
+            <div className="mt-6 pt-6 border-t border-warm-200 text-center">
+              <p className="text-sm text-text-secondary">
+                ¿Quieres donar otro monto o en especie?{' '}
+                <button 
+                  onClick={() => window.scrollTo({ top: document.getElementById('donation-options')?.offsetTop || 0, behavior: 'smooth' })}
+                  className="text-primary-600 font-semibold hover:text-primary-700 underline"
+                >
+                  Ver más opciones abajo
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Donation Type Selection */}
+      <section id="donation-options" className="section-container bg-white">
 
       {/* Donation Type Selection */}
       <section className="section-container bg-white">
@@ -327,29 +410,8 @@ export default function DonatePage() {
                 />
 
                 <div className="border-t pt-6">
-                  {/* MercadoPago Payment Button */}
-                  <div className="mb-4">
-                    <div id="mercadopago-button-container" className="flex justify-center">
-                      <Script 
-                        src="https://www.mercadopago.com.pe/integrations/v1/web-payment-checkout.js"
-                        data-preference-id="1316613327-26cb5034-015d-4747-a8be-20f08d956c29"
-                        data-source="button"
-                        strategy="lazyOnload"
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="relative my-6">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-warm-300"></div>
-                    </div>
-                    <div className="relative flex justify-center text-sm">
-                      <span className="px-4 bg-warm-50 text-text-muted">o contacta con nosotros</span>
-                    </div>
-                  </div>
-
-                  <Button type="submit" size="lg" variant="outline" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? 'Procesando...' : 'Contactar para otras formas de pago'}
+                  <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? 'Procesando...' : `Enviar solicitud de donación`}
                   </Button>
                   <p className="text-sm text-text-muted text-center mt-4">
                     🔒 Tu información está segura y protegida
